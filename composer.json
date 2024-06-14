@@ -1,0 +1,60 @@
+{
+    "name": "billbee/foreign-systems-sdk",
+    "description": "The SDK for connecting foreign systems to Billbee",
+    "type": "library",
+    "require": {
+        "php-64bit": "^8.2",
+        "psr/http-message": "^2.0",
+        "jms/serializer": "^3.30.0",
+        "mintware-de/streams": "^3.0",
+        "ext-json": "*",
+        "mark-gerarts/auto-mapper-plus": "^1.4"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^11.0.0",
+        "friendsofphp/php-cs-fixer": "^3.58",
+        "phpstan/phpstan": "^1.11"
+    },
+    "suggest": {
+        "ext-xdebug": "*"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Billbee\\ForeignSystemsSdk\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Billbee\\Tests\\ForeignSystemsSdk\\": "tests/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Julian Finkler",
+            "email": "julian@billbee.io"
+        }
+    ],
+    "minimum-stability": "stable",
+    "scripts": {
+        "fix-cs": [
+            "./vendor/bin/php-cs-fixer fix ./src/ --using-cache=no --rules=@PSR2",
+            "./vendor/bin/php-cs-fixer fix ./tests/ --using-cache=no --rules=@PSR2"
+        ],
+        "fix-cs:dry-run": [
+            "./vendor/bin/php-cs-fixer fix ./src/ --using-cache=no --rules=@PSR2 --dry-run",
+            "./vendor/bin/php-cs-fixer fix ./tests/ --using-cache=no --rules=@PSR2 --dry-run"
+        ],
+        "phpstan": [
+            "./vendor/bin/phpstan"
+        ],
+        "test": [
+            "./vendor/bin/phpunit"
+        ]
+    },
+    "archive": {
+        "exclude": [
+            "/tests"
+        ]
+    }
+}
