@@ -17,7 +17,7 @@ use Psr\Http\Message\ResponseInterface;
 
 class OrderRequestHandler implements RequestHandlerInterface
 {
-    private const supportedActions = ['GetOrders', 'GetOrder', 'AckOrder', 'SetOrderState'];
+    private const supportedActions = ['GetOrderList', 'GetOrderById', 'AckOrder', 'SetOrderState'];
 
     public function __construct(
         private readonly OrderRepositoryInterface $orderRepository,

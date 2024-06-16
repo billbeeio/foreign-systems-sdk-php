@@ -40,8 +40,8 @@ class OrderRequestHandlerTest extends TestCase
     }
 
     #[TestWith(['GetProvisionDetails', false])]
-    #[TestWith(['GetOrders', true])]
-    #[TestWith(['GetOrder', true])]
+    #[TestWith(['GetOrderList', true])]
+    #[TestWith(['GetOrderById', true])]
     #[TestWith(['AckOrder', true])]
     #[TestWith(['SetOrderState', true])]
     public function testCanHandle(string $action, bool $isSupported): void
