@@ -5,13 +5,14 @@ namespace Billbee\ForeignSystemsSdk\Http;
 use Billbee\ForeignSystemsSdk\Common\Helper\JsonSerializer;
 use Billbee\ForeignSystemsSdk\Http\Abstraction\Response;
 use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
 
 class RequestHandlerPool
 {
     /** @var RequestHandlerInterface[] */
     private array $handlers = [];
 
-    public function handle(Abstraction\Request $request): Response
+    public function handle(Abstraction\Request $request): ResponseInterface
     {
         if ($request->getMethod() !== 'POST') {
             return new Response(null, 400);
@@ -32,7 +33,7 @@ class RequestHandlerPool
             return new Response(null, 501);
         }
 
-        return new Response(null, 200);
+        return $handler->handle($request, $action, $payload);
     }
 
     /**

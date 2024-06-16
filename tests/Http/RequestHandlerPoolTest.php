@@ -3,6 +3,7 @@
 namespace Billbee\Tests\ForeignSystemsSdk\Http;
 
 use Billbee\ForeignSystemsSdk\Http\Abstraction\Request;
+use Billbee\ForeignSystemsSdk\Http\Abstraction\Response;
 use Billbee\ForeignSystemsSdk\Http\RequestHandlerInterface;
 use Billbee\ForeignSystemsSdk\Http\RequestHandlerPool;
 use MintWare\Streams\MemoryStream;
@@ -15,6 +16,7 @@ use PHPUnit\Framework\TestCase;
 class RequestHandlerPoolTest extends TestCase
 {
     private RequestHandlerPool $pool;
+    private Response $mockResponse;
 
     protected function setUp(): void
     {
@@ -22,9 +24,14 @@ class RequestHandlerPoolTest extends TestCase
         $this->pool = new RequestHandlerPool();
 
         $mockHandler = self::createMock(RequestHandlerInterface::class);
+        $this->mockResponse = new Response();
+
         $mockHandler
             ->method('canHandle')
             ->willReturnCallback(fn ($_, string $action) => $action === 'supported');
+        $mockHandler
+            ->method('handle')
+            ->willReturnCallback(fn ($_, string $action) => $this->mockResponse);
 
         $this->pool->addHandler($mockHandler);
     }
@@ -81,6 +88,9 @@ class RequestHandlerPoolTest extends TestCase
             ->withMethod('POST');
 
         $response = $this->pool->handle($request);
+        if ($statusCode === 200) {
+            Assert::assertEquals($this->mockResponse, $response);
+        }
         Assert::assertEquals($statusCode, $response->getStatusCode());
     }
 }
