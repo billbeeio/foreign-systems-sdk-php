@@ -28,9 +28,9 @@ class OrderItem
     #[Serializer\SerializedName('taxAmount')]
     protected float $taxAmount = 0.0;
 
-    #[Serializer\Type('enum<' . VatIndexEnum::class . '>')]
+    #[Serializer\Type('int')]
     #[Serializer\SerializedName('taxIndex')]
-    protected ?VatIndexEnum $taxIndex = null;
+    protected ?int $taxIndexId = null;
 
     /** @var array<string, string> */
     #[Serializer\Type('array<string, string>')]
@@ -109,14 +109,25 @@ class OrderItem
         return $this;
     }
 
+    public function getTaxIndexId(): ?int
+    {
+        return $this->taxIndexId;
+    }
+
+    public function setTaxIndexId(?int $taxIndexId): OrderItem
+    {
+        $this->taxIndexId = $taxIndexId;
+        return $this;
+    }
+
     public function getTaxIndex(): ?VatIndexEnum
     {
-        return $this->taxIndex;
+        return VatIndexEnum::tryFrom($this->taxIndexId);
     }
 
     public function setTaxIndex(?VatIndexEnum $taxIndex): OrderItem
     {
-        $this->taxIndex = $taxIndex;
+        $this->taxIndexId = $taxIndex?->value;
         return $this;
     }
 

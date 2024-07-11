@@ -2,7 +2,6 @@
 
 namespace Billbee\ForeignSystemsSdk\Http;
 
-use Billbee\ForeignSystemsSdk\Common\Helper\JsonSerializer;
 use Billbee\ForeignSystemsSdk\Http\Abstraction\Response;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
