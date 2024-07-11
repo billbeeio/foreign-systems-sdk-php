@@ -17,11 +17,12 @@ use Psr\Http\Message\ResponseInterface;
 
 class OrderRequestHandler implements RequestHandlerInterface
 {
-    private const supportedActions = ['GetOrderList', 'GetOrderById', 'AckOrder', 'SetOrderState'];
+    private const supportedActions = ['GetOrderList', 'GetOrderById', 'AckOrder', 'SetOrderState', 'TestConnection'];
 
     public function __construct(
         private readonly OrderRepositoryInterface $orderRepository,
-    ) {
+    )
+    {
 
     }
 
@@ -37,6 +38,7 @@ class OrderRequestHandler implements RequestHandlerInterface
             'GetOrderById' => $this->handleGetOrderById($request),
             'AckOrder' => $this->handleAckOrder($request),
             'SetOrderState' => $this->handleSetOrderState($request),
+            'TestConnection' => $this->handleTestConnection($request),
             default => Response::notFound(),
         };
     }
@@ -72,6 +74,12 @@ class OrderRequestHandler implements RequestHandlerInterface
         $request = JsonSerializer::deserialize($rawRequest->getBody(), SetOrderStateRequest::class);
         $this->orderRepository->setOrderState($request);
 
+        return Response::json(new BaseResponse());
+    }
+
+    // Todo: add coverage
+    private function handleTestConnection(RequestInterface $request): ResponseInterface
+    {
         return Response::json(new BaseResponse());
     }
 }
