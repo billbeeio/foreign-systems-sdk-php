@@ -50,8 +50,8 @@ class OrderRequestHandlerTest extends TestCase
         Assert::assertEquals($isSupported, $this->handler->canHandle($mockRequest, $action));
     }
     
-    #[TestWith(['{"action": "GetOrderList", "payload": {"page": 1, "perPage": 10, "startDate": "2024-06-14T15:36:00Z"}}', 1, 10, "2024-06-14"])]
-    #[TestWith(['{"action": "GetOrderList", "payload": {"page": 2, "perPage": 20, "startDate": "2023-06-14T15:36:00Z"}}', 2, 20, "2023-06-14"])]
+    #[TestWith(['{"action": "GetOrderList", "payload": {"page": 1, "perPage": 10, "startDate": "2024-06-14T15:36:00"}}', 1, 10, "2024-06-14"])]
+    #[TestWith(['{"action": "GetOrderList", "payload": {"page": 2, "perPage": 20, "startDate": "2023-06-14T15:36:00"}}', 2, 20, "2023-06-14"])]
     public function testHandle_GetOrders(string $requestBody, int $page, int $perPage, string $start): void
     {
         $this->mockOrderRepository
