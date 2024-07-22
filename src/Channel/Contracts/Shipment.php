@@ -81,7 +81,7 @@ class Shipment
     /**
      * Timestamp when the shipment was created.
      */
-    #[Serializer\Type(DateTimeInterface::class)]
+    #[Type("DateTimeInterface<'Y-m-d\TH:i:s'>")]
     #[Serializer\SerializedName('createdAt')]
     protected DateTimeInterface $createdAt;
 

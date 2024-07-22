@@ -64,23 +64,23 @@ class Order
     #[Serializer\SerializedName('shippingAddress')]
     protected Address $shippingAddress;
 
-    #[Serializer\Type(DateTimeInterface::class)]
+    #[Type("DateTimeInterface<'Y-m-d\TH:i:s'>")]
     #[Serializer\SerializedName('orderDate')]
     protected DateTime $orderDate;
 
-    #[Serializer\Type(DateTimeInterface::class)]
+    #[Type("DateTimeInterface<'Y-m-d\TH:i:s'>")]
     #[Serializer\SerializedName('payDate')]
     protected ?DateTime $payDate = null;
 
-    #[Serializer\Type(DateTimeInterface::class)]
+    #[Type("DateTimeInterface<'Y-m-d\TH:i:s'>")]
     #[Serializer\SerializedName('shipDate')]
     protected ?DateTime $shipDate = null;
 
-    #[Serializer\Type(DateTimeInterface::class)]
+    #[Type("DateTimeInterface<'Y-m-d\TH:i:s'>")]
     #[Serializer\SerializedName('invoiceDate')]
     protected ?DateTime $invoiceDate = null;
 
-    #[Serializer\Type(DateTimeInterface::class)]
+    #[Type("DateTimeInterface<'Y-m-d\TH:i:s'>")]
     #[Serializer\SerializedName('updatedAt')]
     protected ?DateTime $updatedAt = null;
 

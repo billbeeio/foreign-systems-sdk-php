@@ -8,7 +8,7 @@ use JMS\Serializer\Annotation\Type;
 
 class GetOrderListRequestPayload
 {
-    #[Type(DateTimeInterface::class)]
+    #[Type("DateTimeInterface<'Y-m-d\TH:i:s'>")]
     #[SerializedName('startDate')]
     private ?DateTimeInterface $startDate = null;
 

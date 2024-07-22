@@ -24,7 +24,7 @@ class SetOrderStateRequestPayload
     #[Serializer\SerializedName('status')]
     protected int $statusId = 1;
 
-    #[Serializer\Type(DateTimeInterface::class)]
+    #[Type("DateTimeInterface<'Y-m-d\TH:i:s'>")]
     #[Serializer\SerializedName('changeDate')]
     protected ?DateTimeInterface $changeDate = null;
 

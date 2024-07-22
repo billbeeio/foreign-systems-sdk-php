@@ -21,7 +21,7 @@ class Comment
     protected bool $fromCustomer = false;
 
     #[Serializer\SerializedName("createdAt")]
-    #[Serializer\Type(DateTimeInterface::class)]
+    #[Type("DateTimeInterface<'Y-m-d\TH:i:s'>")]
     protected DateTimeInterface $createdAt;
 
     public function __construct()
