@@ -2,13 +2,7 @@
 
 namespace Billbee\ForeignSystemsSdk\Common\Http;
 
-use JMS\Serializer\Annotation as Serializer;
-
-/**
- * @template T
- * @extends BaseRequest<T>
- */
-class PagedBaseRequest extends BaseRequest
+class PagedBasePayload
 {
     #[Serializer\Type("int")]
     #[Serializer\SerializedName("page")]

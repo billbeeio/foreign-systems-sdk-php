@@ -3,13 +3,10 @@
 namespace Billbee\ForeignSystemsSdk\Channel\Http\Request;
 
 use Billbee\ForeignSystemsSdk\Channel\Http\Payload\GetOrderListRequestPayload;
-use Billbee\ForeignSystemsSdk\Common\Http\PagedBaseRequest;
+use Billbee\ForeignSystemsSdk\Common\Http\BaseRequest;
 use JMS\Serializer\Annotation as Serializer;
 
-/**
- * @extends PagedBaseRequest<GetOrderListRequestPayload>
- */
-class GetOrderListRequest extends PagedBaseRequest
+class GetOrderListRequest extends BaseRequest
 {
     #[Serializer\SerializedName('payload')]
     #[Serializer\Type(GetOrderListRequestPayload::class)]

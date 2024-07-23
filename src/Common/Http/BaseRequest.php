@@ -4,9 +4,6 @@ namespace Billbee\ForeignSystemsSdk\Common\Http;
 
 use JMS\Serializer\Annotation as Serializer;
 
-/**
- * @template T
- */
 class BaseRequest
 {
     #[Serializer\SerializedName("action")]

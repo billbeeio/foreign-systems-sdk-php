@@ -2,11 +2,12 @@
 
 namespace Billbee\ForeignSystemsSdk\Channel\Http\Payload;
 
+use Billbee\ForeignSystemsSdk\Common\Http\PagedBasePayload;
 use DateTimeInterface;
 use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Type;
 
-class GetOrderListRequestPayload
+class GetOrderListRequestPayload extends PagedBasePayload
 {
     #[Type("DateTimeInterface<'Y-m-d\TH:i:s'>")]
     #[SerializedName('startDate')]

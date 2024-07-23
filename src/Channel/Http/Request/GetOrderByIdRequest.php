@@ -5,9 +5,6 @@ namespace Billbee\ForeignSystemsSdk\Channel\Http\Request;
 use Billbee\ForeignSystemsSdk\Common\Http\BaseRequest;
 use JMS\Serializer\Annotation as Serializer;
 
-/**
- * @extends BaseRequest<string>
- */
 class GetOrderByIdRequest extends BaseRequest
 {
     #[Serializer\SerializedName('payload')]

@@ -6,9 +6,6 @@ use JMS\Serializer\Annotation as Serializer;
 use Billbee\ForeignSystemsSdk\Channel\Http\Payload\SetOrderStateRequestPayload;
 use Billbee\ForeignSystemsSdk\Common\Http\BaseRequest;
 
-/**
- * @extends BaseRequest<SetOrderStateRequestPayload>
- */
 class SetOrderStateRequest extends BaseRequest
 {
     #[Serializer\SerializedName('payload')]
