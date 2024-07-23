@@ -2,6 +2,8 @@
 
 namespace Billbee\ForeignSystemsSdk\Common\Http;
 
+use JMS\Serializer\Annotation as Serializer;
+
 class PagedBasePayload
 {
     #[Serializer\Type("int")]
