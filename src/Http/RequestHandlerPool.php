@@ -14,7 +14,7 @@ class RequestHandlerPool
     /** @var RequestHandlerInterface[] */
     private array $handlers = [];
 
-    public function __construct(?AuthenticatorInterface $authenticator) {
+    public function __construct(?AuthenticatorInterface $authenticator = null) {
         $this->authenticator = $authenticator;
     }
 
