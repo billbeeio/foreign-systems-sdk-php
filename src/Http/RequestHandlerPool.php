@@ -3,18 +3,29 @@
 namespace Billbee\ForeignSystemsSdk\Http;
 
 use Billbee\ForeignSystemsSdk\Http\Abstraction\Response;
+use Billbee\ForeignSystemsSdk\Security\AuthenticatorInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
 class RequestHandlerPool
 {
+    private ?AuthenticatorInterface $authenticator;
+
     /** @var RequestHandlerInterface[] */
     private array $handlers = [];
+
+    public function __construct(?AuthenticatorInterface $authenticator) {
+        $this->authenticator = $authenticator;
+    }
 
     public function handle(Abstraction\Request $request): ResponseInterface
     {
         if ($request->getMethod() !== 'POST') {
             return new Response(null, 400);
+        }
+
+        if ($this->authenticator != null && !$this->authenticator->isAuthorized($request)) {
+            return Response::unauthorized('Unauthorized');
         }
 
         $body = (string)$request->getBody();
