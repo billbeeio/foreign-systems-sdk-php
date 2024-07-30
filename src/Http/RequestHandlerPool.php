@@ -14,6 +14,11 @@ class RequestHandlerPool
     /** @var RequestHandlerInterface[] */
     private array $handlers = [];
 
+    /**
+     * @var array|string[] Actions that do not need an authorization
+     */
+    private array $noAuthActions = ["GetProvisioningDetails"];
+
     public function __construct(?AuthenticatorInterface $authenticator = null) {
         $this->authenticator = $authenticator;
     }
@@ -24,10 +29,6 @@ class RequestHandlerPool
             return new Response(null, 400);
         }
 
-        if ($this->authenticator != null && !$this->authenticator->isAuthorized($request)) {
-            return Response::unauthorized('Unauthorized');
-        }
-
         $body = (string)$request->getBody();
         $parsed = json_decode($body, true);
         if (!is_array($parsed)
@@ -35,6 +36,11 @@ class RequestHandlerPool
             || !is_string($action = $parsed['action'])
         ) {
             return new Response(null, 400);
+        }
+
+        if (!in_array($action, $this->noAuthActions)
+            && $this->authenticator != null && !$this->authenticator->isAuthorized($request)) {
+            return Response::unauthorized('Unauthorized');
         }
 
         $payload = $parsed['payload'] ?? null;
