@@ -3,7 +3,6 @@
 namespace Billbee\ForeignSystemsSdk\Provisioning\Http;
 
 use Billbee\ForeignSystemsSdk\Common\Helper\JsonSerializer;
-use Billbee\ForeignSystemsSdk\Common\Helper\StringHelper;
 use Billbee\ForeignSystemsSdk\Common\Http\BaseResponse;
 use Billbee\ForeignSystemsSdk\Http\Abstraction\Response;
 use Billbee\ForeignSystemsSdk\Http\RequestHandlerInterface;
@@ -41,21 +40,25 @@ class ProvisioningRequestHandler implements RequestHandlerInterface
     {
         $request = JsonSerializer::deserialize($rawRequest->getBody(), GetProvisioningDetailsRequest::class);
 
-        $key = $request->getPayload();
-        if (empty($key)) {
+        $url = $request->getPayload();
+        if (empty($url)) {
             throw new MissingKeyException();
         }
 
         $provisioningDetails = $this->provisioningRepository->getProvisioningDetails($request);
         $provisioningDetailsAsJsonString = JsonSerializer::serialize($provisioningDetails);
 
-        // Store the provisining details inside Billbee
-        $ch = curl_init('https://host.docker.internal/sync/Provisioning?key=' . $key);
+        // Store the provisioning details inside Billbee
+        $ch = curl_init($url);
+        if ($ch === false) {
+            throw new RequestToBillbeeFailedException('Failed to init curl');
+        }
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
         curl_setopt($ch, CURLOPT_POSTFIELDS, $provisioningDetailsAsJsonString);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+
         $content = curl_exec($ch);
 
         $curlErrorNumber = curl_errno($ch);
