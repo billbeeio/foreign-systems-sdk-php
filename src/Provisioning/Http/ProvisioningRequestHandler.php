@@ -42,7 +42,7 @@ class ProvisioningRequestHandler implements RequestHandlerInterface
         $request = JsonSerializer::deserialize($rawRequest->getBody(), GetProvisioningDetailsRequest::class);
 
         $key = $request->getPayload();
-        if (StringHelper::isNullOrEmpty($key)) {
+        if (empty($key)) {
             throw new MissingKeyException();
         }
 
