@@ -14,9 +14,14 @@ class ConfigurationField
     #[Serializer\SerializedName("name")]
     protected string $name = '';
 
-    #[Serializer\Type('enum<'.FieldTypeEnum::class.'>')]
+    #[Serializer\Type('enum<' . FieldTypeEnum::class . '>')]
     #[Serializer\SerializedName("type")]
     protected FieldTypeEnum $type = FieldTypeEnum::Text;
+
+    /** @var array<string, string> */
+    #[Serializer\Type('array<string, string>')]
+    #[Serializer\SerializedName("dropdownValues")]
+    protected array $dropdownValues = [];
 
     #[Serializer\Type("bool")]
     #[Serializer\SerializedName("isRequired")]
@@ -78,6 +83,19 @@ class ConfigurationField
     public function setAppendToRequests(bool $appendToRequests): ConfigurationField
     {
         $this->appendToRequests = $appendToRequests;
+        return $this;
+    }
+
+    /** @return array<string, string> */
+    public function getDropdownValues(): array
+    {
+        return $this->dropdownValues;
+    }
+
+    /** @param array<string, string> $dropdownValues */
+    public function setDropdownValues(array $dropdownValues): ConfigurationField
+    {
+        $this->dropdownValues = $dropdownValues;
         return $this;
     }
 }
