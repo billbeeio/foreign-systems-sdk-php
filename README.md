@@ -52,4 +52,7 @@ $response->send();
 Since the documentation is not finalized yet, you can head to the old documentation as the concepts are quite similar:
 https://github.com/billbeeio/custom-shop-php-sdk/blob/master/docs/index.md
 
+Also, if you need some guidance in migrating from the Custom Shop SDK to the Foreign Systems SDK we provide a migration guide which is currently only available in german:
+https://github.com/billbeeio/foreign-systems-sdk-php/blob/main/MIGRATION_GUIDE.md
+
 
