@@ -18,9 +18,9 @@ class Shipment
     /**
      * The type of carrier used by the shipment
      */
-    #[Serializer\Type('enum<' . ShippingCarrierEnum::class . '>')]
+    #[Serializer\Type('string')]
     #[Serializer\SerializedName('carrier')]
-    protected ShippingCarrierEnum $carrier = ShippingCarrierEnum::Other;
+    protected string $carrierId = '';
 
     /**
      * The user entered display name of the shipping provider
@@ -81,7 +81,7 @@ class Shipment
     /**
      * Timestamp when the shipment was created.
      */
-    #[Type("DateTimeInterface<'Y-m-d\TH:i:s'>")]
+    #[Serializer\Type("DateTimeInterface<'Y-m-d\TH:i:s'>")]
     #[Serializer\SerializedName('createdAt')]
     protected DateTimeInterface $createdAt;
 
@@ -101,16 +101,28 @@ class Shipment
         return $this;
     }
 
-    public function getCarrier(): ShippingCarrierEnum
+    public function getCarrierId(): string
     {
-        return $this->carrier;
+        return $this->carrierId;
+    }
+
+    public function setCarrierId(string $carrierId): Shipment
+    {
+        $this->carrierId = $carrierId;
+        return $this;
+    }
+
+    public function getCarrier(): ?ShippingCarrierEnum
+    {
+        return ShippingCarrierEnum::tryFrom($this->carrierId);
     }
 
     public function setCarrier(ShippingCarrierEnum $carrier): Shipment
     {
-        $this->carrier = $carrier;
+        $this->carrierId = $carrier->value;
         return $this;
     }
+
 
     public function getShipperName(): string
     {
@@ -210,6 +222,6 @@ class Shipment
         $this->createdAt = $createdAt;
         return $this;
     }
-    
+
 
 }
