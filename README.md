@@ -1,21 +1,21 @@
 # Foreign Systems API
 
-This is the PHP SDK for the new Billbee Foreign Systems API.
+This is the PHP SDK for the **upcoming** Billbee Foreign Systems API.
 
-The Foreign Systems API supersedes the Custom Web Shop API since it is more flexible and provides a better developer 
+The Foreign Systems API will supersede the Custom Shop API since it is more flexible and provides a better developer 
 experience.
 
-## Differences to the Custom Webshop API
-The Custom Web Shop API supports, as the name says, only webshops and marketplaces.
-The Foreign Systems API is designed to support other systems as well. At the moment only web shops and market places supported
+## Differences to the Custom Shop API
+The Custom Shop API supports, as the name says, only webshops and marketplaces.
+The Foreign Systems API is designed to support other systems as well. At the moment only web shops and marketplaces are supported, 
 but we will support shipping systems, payment systems and other systems in the future.
 
 To achieve this, we moved a bit of logic from our side to the implementors side. The first API call we make is a provisioning call.
-This call is used to query all supported features on your end plus configuration details such as authorization and HTTP Headers. 
+This call is used to query all supported features on your end plus configuration details such as authorization method and HTTP Headers. 
 
 Your system need to post the [ProvisioningDetails](./src/Provisioning/Contracts/ProvisioningDetails.php) to the URL given in the call we made.
 
-The further communication is quite similar to the old Custom Webshop API.
+The further communication is quite similar to the old Custom Shop API.
 
 ## Installation
 ```bash
