@@ -7,8 +7,8 @@
         "psr/http-message": "^2.0",
         "jms/serializer": "^3.30.0",
         "mintware-de/streams": "^3.0",
-        "ext-json": "*",
         "mark-gerarts/auto-mapper-plus": "^1.4",
+        "ext-json": "*",
         "ext-curl": "*"
     },
     "require-dev": {
@@ -39,12 +39,12 @@
     "minimum-stability": "stable",
     "scripts": {
         "fix-cs": [
-            "./vendor/bin/php-cs-fixer fix ./src/ --using-cache=no --rules=@PSR2",
-            "./vendor/bin/php-cs-fixer fix ./tests/ --using-cache=no --rules=@PSR2"
+            "./vendor/bin/php-cs-fixer fix ./src/ --using-cache=no --rules=@PSR12",
+            "./vendor/bin/php-cs-fixer fix ./tests/ --using-cache=no --rules=@PSR12"
         ],
         "fix-cs:dry-run": [
-            "./vendor/bin/php-cs-fixer fix ./src/ --using-cache=no --rules=@PSR2 --dry-run",
-            "./vendor/bin/php-cs-fixer fix ./tests/ --using-cache=no --rules=@PSR2 --dry-run"
+            "./vendor/bin/php-cs-fixer fix ./src/ --using-cache=no --rules=@PSR12 --dry-run",
+            "./vendor/bin/php-cs-fixer fix ./tests/ --using-cache=no --rules=@PSR12 --dry-run"
         ],
         "phpstan": [
             "./vendor/bin/phpstan"

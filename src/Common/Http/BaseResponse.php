@@ -9,7 +9,6 @@ use JMS\Serializer\Annotation as Serializer;
  */
 class BaseResponse
 {
-
     /** @param T $data */
     public function __construct(
         #[Serializer\SerializedName('data')]

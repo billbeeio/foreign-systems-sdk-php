@@ -85,6 +85,6 @@ class ProvisioningDetails
         return $this;
     }
 
-    
+
 
 }
