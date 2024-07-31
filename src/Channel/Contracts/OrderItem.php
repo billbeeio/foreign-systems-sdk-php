@@ -122,6 +122,9 @@ class OrderItem
 
     public function getTaxIndex(): ?VatIndexEnum
     {
+        if ($this->taxIndexId === null) {
+            return null;
+        }
         return VatIndexEnum::tryFrom($this->taxIndexId);
     }
 

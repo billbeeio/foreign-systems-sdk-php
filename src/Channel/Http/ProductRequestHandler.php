@@ -19,8 +19,7 @@ class ProductRequestHandler implements RequestHandlerInterface
 
     public function __construct(
         private readonly ProductRepositoryInterface $productRepository,
-    )
-    {
+    ) {
     }
 
     public function canHandle(RequestInterface $request, string $action, mixed $payload = null): bool

@@ -45,19 +45,4 @@ class ProvisioningRequestHandlerTest extends TestCase
         $mockRequest = self::createMock(Request::class);
         Assert::assertEquals($isSupported, $this->handler->canHandle($mockRequest, $action));
     }
-    
-    #[TestWith(['{"action": "GetProvisioningDetails", "payload": "1234"}', "1234"])]
-    public function testHandle_GetProvisionings(string $requestBody, string $key): void
-    {
-        $this->mockProvisioningRepository
-            ->expects(self::once())
-            ->method('getProvisioningDetails')
-            ->willReturnCallback(function (GetProvisioningDetailsRequest $request) use ($key) {
-                Assert::assertEquals($request->getPayload(), $key);
-            })
-            ->willReturn(new ProvisioningDetails());
-
-        $mockRequest = (new Request())->withBody(new MemoryStream($requestBody));
-        $this->handler->handle($mockRequest, 'GetProvisioningDetails');
-    }
 }

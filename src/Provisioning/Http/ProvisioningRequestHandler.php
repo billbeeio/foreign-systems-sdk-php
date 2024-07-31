@@ -18,8 +18,7 @@ class ProvisioningRequestHandler implements RequestHandlerInterface
 
     public function __construct(
         private readonly ProvisioningRepositoryInterface $provisioningRepository,
-    )
-    {
+    ) {
     }
 
     public function canHandle(RequestInterface $request, string $action, mixed $payload = null): bool

@@ -21,8 +21,7 @@ class OrderRequestHandler implements RequestHandlerInterface
 
     public function __construct(
         private readonly OrderRepositoryInterface $orderRepository,
-    )
-    {
+    ) {
 
     }
 

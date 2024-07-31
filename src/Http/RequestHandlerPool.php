@@ -14,12 +14,8 @@ class RequestHandlerPool
     /** @var RequestHandlerInterface[] */
     private array $handlers = [];
 
-    /**
-     * @var array|string[] Actions that do not need an authorization
-     */
-    private array $noAuthActions = ["GetProvisioningDetails"];
-
-    public function __construct(?AuthenticatorInterface $authenticator = null) {
+    public function __construct(?AuthenticatorInterface $authenticator = null)
+    {
         $this->authenticator = $authenticator;
     }
 
@@ -37,9 +33,9 @@ class RequestHandlerPool
         ) {
             return new Response(null, 400);
         }
+        $request = $request->withAddedHeader('X-BB-INTERNAL-ACTION', $action);
 
-        if (!in_array($action, $this->noAuthActions)
-            && $this->authenticator != null && !$this->authenticator->isAuthorized($request)) {
+        if ($this->authenticator !== null && !$this->authenticator->isAuthorized($request)) {
             return Response::unauthorized('Unauthorized');
         }
 
