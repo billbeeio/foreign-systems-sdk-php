@@ -46,7 +46,7 @@ class ProductRequestHandlerTest extends TestCase
         $mockRequest = self::createMock(Request::class);
         Assert::assertEquals($isSupported, $this->handler->canHandle($mockRequest, $action));
     }
-    
+
     #[TestWith(['{"action": "GetProductList", "payload": {"page": 1, "perPage": 10}}', 1, 10])]
     #[TestWith(['{"action": "GetProductList", "payload": {"page": 2, "perPage": 20}}', 2, 20])]
     public function testHandle_GetProducts(string $requestBody, int $page, int $perPage): void

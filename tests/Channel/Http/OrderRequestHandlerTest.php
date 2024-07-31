@@ -49,7 +49,7 @@ class OrderRequestHandlerTest extends TestCase
         $mockRequest = self::createMock(Request::class);
         Assert::assertEquals($isSupported, $this->handler->canHandle($mockRequest, $action));
     }
-    
+
     #[TestWith(['{"action": "GetOrderList", "payload": {"page": 1, "perPage": 10, "startDate": "2024-06-14T15:36:00"}}', 1, 10, "2024-06-14"])]
     #[TestWith(['{"action": "GetOrderList", "payload": {"page": 2, "perPage": 20, "startDate": "2023-06-14T15:36:00"}}', 2, 20, "2023-06-14"])]
     public function testHandle_GetOrders(string $requestBody, int $page, int $perPage, string $start): void
@@ -96,8 +96,8 @@ class OrderRequestHandlerTest extends TestCase
         $this->handler->handle($mockRequest, 'AckOrder');
     }
 
-    #[TestWith(['{"action": "SetOrderState", "payload": {"id": "12345","status": 2,"changeDate": "2024-06-14T10:00:00Z","paidAmount": 99.99}}', "12345"])]
-    #[TestWith(['{"action": "SetOrderState", "payload": {"id": "5678","status": 2,"changeDate": "2024-06-14T10:00:00Z","paidAmount": 99.99}}', "5678"])]
+    #[TestWith(['{"action": "SetOrderState", "payload": {"id": "12345","status": 2,"changeDate": "2024-06-14T10:00:00","paidAmount": 99.99}}', "12345"])]
+    #[TestWith(['{"action": "SetOrderState", "payload": {"id": "5678","status": 2,"changeDate": "2024-06-14T10:00:00","paidAmount": 99.99}}', "5678"])]
     public function testSetOrderState(string $requestBody, string $orderId): void
     {
         $this->mockOrderRepository
